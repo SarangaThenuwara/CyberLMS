@@ -1,0 +1,39 @@
+name: Run Scripts for Repo 1
+
+on:
+  schedule:
+    - cron: '0 0 * * 1' # Runs every Monday at midnight UTC
+  workflow_dispatch:
+
+jobs:
+  run_scripts:
+    name: Check Week and Run Scripts
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.x'
+
+      - name: Install Required Modules
+        run: |
+          python -m pip install requests dropbox pandas
+
+      - name: Determine Current Week
+        id: determine-week
+        run: |
+          python get_week.py > week.txt
+          current_week=$(cat week.txt)
+          echo "Current week: $current_week"
+          echo "::set-output name=week::$current_week"
+        shell: bash
+
+      - name: Run Scripts if Week 1
+        if: steps.determine-week.outputs.week == '1'
+        run: |
+          # Your script-running logic here
+          echo "Running scripts for Repo 1"
