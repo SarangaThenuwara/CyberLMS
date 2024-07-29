@@ -2,7 +2,7 @@ name: Run Scripts for Repo 1
 
 on:
   schedule:
-    - cron: '0 0 * * 1' # Runs every Monday at midnight UTC
+    - cron: '0 0 * * 4' # Runs every Monday at midnight UTC
   workflow_dispatch:
 
 jobs:
@@ -33,7 +33,7 @@ jobs:
         shell: bash
 
       - name: Run Scripts if Week 1
-        if: steps.determine-week.outputs.week == '1'
+        if: steps.determine-week.outputs.week == '4'
         run: |
           # Your script-running logic here
           echo "Running scripts for Repo 1"
