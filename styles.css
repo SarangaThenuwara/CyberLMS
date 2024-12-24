@@ -1,0 +1,182 @@
+<style>
+
+<link rel="icon" href="https://cdn.iconscout.com/icon/free/png-512/free-huawei-logo-icon-download-in-svg-png-gif-file-formats--brand-mobile-logos-pack-icons-226443.png?f=webp&w=256" type="image/x-icon"> <!-- Favicon -->
+
+        /* Reset Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #121212;
+            color: white;
+            background-image: url('web assets/BG.png'); /* Background image */
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: row; /* Arrange items horizontally */
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            max-width: 1200px;
+            height: auto;
+        }
+
+       /* Left Section: Form */
+.form-container {
+    flex: 1;
+    background: linear-gradient(145deg, rgba(47, 47, 47, 0.8), rgba(0, 0, 0, 0.8)); /* Added more opacity (0.8) to the background */
+    border-radius: 20px;
+    padding: 20px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3); /* Increased box-shadow opacity */
+    max-width: 400px;
+    margin-right: 2%; /* 5% margin */
+}
+
+h1 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    color: rgba(255, 255, 255, 0.9); /* Slightly reduced opacity */
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: bold;
+}
+
+.form-group label {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: rgba(255, 255, 255, 0.8); /* Reduced opacity for labels */
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 10px;
+    font-size: 1rem;
+    border-radius: 10px;
+    border: 1px solid rgba(221, 221, 221, 0.7); /* Reduced opacity for borders */
+    background-color: rgba(244, 244, 244, 0.8); /* Reduced opacity for input background */
+    margin-top: 5px;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    background-color: rgba(225, 245, 254, 0.9); /* Reduced opacity for focus state */
+    border-color: rgba(37, 211, 102, 0.8); /* Reduced opacity for focus border */
+    outline: none;
+}
+
+textarea {
+    height: 250px;
+}
+
+button {
+    background: linear-gradient(145deg, rgba(244, 67, 54, 0.8), rgba(211, 47, 47, 0.8)); /* Added opacity to gradient background */
+    color: rgba(255, 255, 255, 0.9); /* Slightly reduced opacity for text */
+    padding: 10px 20px;
+    font-size: 1.2rem;
+    border-radius: 20px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+button:hover {
+    background: linear-gradient(145deg, rgba(211, 47, 47, 0.9), rgba(183, 28, 28, 0.9)); /* Increased opacity on hover */
+    transform: scale(1.05);
+}
+
+
+/* Right Section: Images */
+.image-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 10%; /* Space between images */
+    height: 60%; /* Overall height for the right section */
+}
+
+.image-container img {
+    width: 100%;
+    object-fit: contain; /* Ensures images maintain aspect ratio */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.image-container img:nth-child(1) {
+    width: 80%;
+    height: 40%; /* First image with specific width and height */
+    margin-right: 0%; /* No space on the right */
+    margin-top: 5%; /* Adds a gap above the first image */
+    margin-bottom: 5%; /* Adds space below the first image */
+}
+
+.image-container img:nth-child(2) {
+    width: 75%;
+    height: 5%; /* Second image with specific width and height */
+    margin-bottom: 10%; /* Adds gap below the second image */
+	 margin-bottom: 2%; /* Adds space below the first image */
+}
+
+.image-container img:nth-child(3) {
+    width: 40%;
+    height: 22%; /* Third image with specific width and height */
+    margin-right: 20%; /* Adjust this value as needed to create space on the right */
+    margin-top: 5%; /* Adds a gap above the third image */
+}
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .form-container {
+                margin-right: 0;
+                margin-bottom: 10px;
+                width: 60%;
+            }
+
+            .image-container {
+                align-items: center;
+            }
+
+            .image-container img {
+                width: 50px;
+                height: 60%;
+            }
+        }
+		
+		/* Terms and Privacy Policy Links */
+.terms-links {
+    margin-top: 20px;
+    text-align: right;
+    font-size: 1rem;
+    color: #fff;
+}
+
+.terms-links a {
+    color: #f44336; /* Link color */
+    text-decoration: none; /* Remove underline */
+    margin: 0 10px; /* Add spacing between the links */
+}
+
+.terms-links a:hover {
+    text-decoration: underline; /* Underline on hover */
+}
+
+
+</style>
