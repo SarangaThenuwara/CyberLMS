@@ -42,7 +42,7 @@
         }
     </style>
 </head>
-<body>
+<body onload="hideStyles()">
 
 <header>
     <h1>Terms and Conditions</h1>
@@ -74,6 +74,15 @@
 <footer>
     <p>&copy; 2024 Your Website Name. All Rights Reserved.</p>
 </footer>
+
+<script>
+    function hideStyles() {
+        const styles = document.querySelector('style');
+        if (styles) {
+            styles.remove();  // Removes the CSS styles when the page loads
+        }
+    }
+</script>
 
 </body>
 </html>
