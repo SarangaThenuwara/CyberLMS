@@ -1,0 +1,4 @@
+[[vars]]
+MONGO_URI = "mongodb+srv://smsdb:2Ysls2YSCCYrCKTn@cluster0.kkbbr.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
+DB_NAME = "test"
+COLLECTION_NAME = "formdatas"
