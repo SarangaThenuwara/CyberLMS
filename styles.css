@@ -1,182 +1,463 @@
-<style>
-
-<link rel="icon" href="https://cdn.iconscout.com/icon/free/png-512/free-huawei-logo-icon-download-in-svg-png-gif-file-formats--brand-mobile-logos-pack-icons-226443.png?f=webp&w=256" type="image/x-icon"> <!-- Favicon -->
-
-        /* Reset Styles */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Arial', sans-serif;
-            height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background-color: #121212;
-            color: white;
-            background-image: url('web assets/BG.png'); /* Background image */
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
-        }
-
-        .container {
-            display: flex;
-            flex-direction: row; /* Arrange items horizontally */
-            justify-content: space-between;
-            align-items: center;
-            width: 100%;
-            max-width: 1200px;
-            height: auto;
-        }
-
-       /* Left Section: Form */
-.form-container {
-    flex: 1;
-    background: linear-gradient(145deg, rgba(47, 47, 47, 0.8), rgba(0, 0, 0, 0.8)); /* Added more opacity (0.8) to the background */
-    border-radius: 20px;
-    padding: 20px;
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3); /* Increased box-shadow opacity */
-    max-width: 400px;
-    margin-right: 2%; /* 5% margin */
+/* Base Styles */
+body {
+    font-family: 'Open Sans', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background-color: #F9FAFB; /* Light grayish-blue for a softer look */
+    color: #2D3748; /* Dark slate gray for better readability */
+    line-height: 1.6;
 }
 
-h1 {
+header {
+    background: linear-gradient(135deg, #1E3A8A, #3B82F6); /* Gradient blue with a modern twist */
+    color: white;
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.cta-button {
+    background-color: #FFC107; /* Vibrant yellow for attention */
+    color: #1E3A8A; /* Contrasting dark blue */
+    padding: 1rem 2rem;
+    font-size: 1.2rem;
+    text-decoration: none;
+    border-radius: 30px; /* Rounded pill shape */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.cta-button:hover {
+    transform: translateY(-5px); /* Slight upward movement on hover */
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Center-align the "Our Services" heading */
+.services h2 {
+    text-align: center; /* Center-align the text */
     font-size: 2.5rem;
-    margin-bottom: 20px;
-    color: rgba(255, 255, 255, 0.9); /* Slightly reduced opacity */
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    font-weight: bold;
+    margin-bottom: 2rem;
+    color: #1E3A8A; /* Matching theme color */
+    animation: fadeInUp 1.5s ease-in-out; /* Add a subtle animation */
 }
 
-.form-group label {
-    font-size: 1.2rem;
-    font-weight: bold;
-    color: rgba(255, 255, 255, 0.8); /* Reduced opacity for labels */
+/* Animation for the heading */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
-.form-group input,
-.form-group textarea {
-    width: 100%;
-    padding: 10px;
+/* Service Boxes */
+.services {
+    padding: 4rem 2rem;
+    background-color: #FFFFFF;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+    margin: 2rem 0;
+}
+
+.service-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Responsive grid */
+    gap: 2rem;
+}
+
+.service-item {
+    background: #FFFFFF; /* White background for contrast */
+    border: 1px solid #E2E8F0; /* Light gray border */
+    border-radius: 12px; /* Rounded corners */
+    padding: 2rem;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    text-align: center; /* Center-align content */
+}
+
+.service-item:hover {
+    transform: translateY(-10px); /* Elevate on hover */
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+}
+
+.service-item .icon {
+    font-size: 3rem;
+    color: #3B82F6; /* Bright blue for icons */
+    margin-bottom: 1rem;
+    transition: transform 0.3s ease;
+}
+
+.service-item:hover .icon {
+    transform: scale(1.2); /* Scale up icons on hover */
+}
+
+.service-item h3 {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+    color: #1E3A8A; /* Matching theme color */
+}
+
+.service-item p {
     font-size: 1rem;
-    border-radius: 10px;
-    border: 1px solid rgba(221, 221, 221, 0.7); /* Reduced opacity for borders */
-    background-color: rgba(244, 244, 244, 0.8); /* Reduced opacity for input background */
-    margin-top: 5px;
+    color: #4A5568; /* Slightly muted text */
+}
 }
 
-.form-group input:focus,
-.form-group textarea:focus {
-    background-color: rgba(225, 245, 254, 0.9); /* Reduced opacity for focus state */
-    border-color: rgba(37, 211, 102, 0.8); /* Reduced opacity for focus border */
-    outline: none;
+footer {
+    background: linear-gradient(135deg, #1E3A8A, #3B82F6); /* Matching gradient */
+    color: white;
+    text-align: center;
+    padding: 2rem;
 }
 
-textarea {
-    height: 250px;
+/* Logo Styling */
+header .logo img {
+    width: 150px; /* Set the desired width */
+    height: auto; /* Maintain aspect ratio */
+    object-fit: contain; /* Ensure the image fits well */
+    transition: transform 0.3s ease;
 }
 
-button {
-    background: linear-gradient(145deg, rgba(244, 67, 54, 0.8), rgba(211, 47, 47, 0.8)); /* Added opacity to gradient background */
-    color: rgba(255, 255, 255, 0.9); /* Slightly reduced opacity for text */
-    padding: 10px 20px;
+header .logo img:hover {
+    transform: scale(1.1); /* Slight zoom effect on hover */
+}
+
+@media (max-width: 768px) {
+    header .logo img {
+        width: 120px; /* Smaller size for tablets */
+    }
+}
+
+@media (max-width: 480px) {
+    header .logo img {
+        width: 100px; /* Even smaller size for mobile devices */
+    }
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1rem;
+    transition: color 0.3s ease, letter-spacing 0.3s ease;
+    letter-spacing: 1px;
+}
+
+nav ul li a:hover {
+    color: #FFC107; /* Match CTA button color */
+    letter-spacing: 2px; /* Expand spacing for emphasis */
+}
+
+.hero {
+    background: url('hero-background.jpg') no-repeat center center/cover;
+    background-color: #1E3A8A; /* Fallback color */
+    color: white;
+    text-align: center;
+    padding: 8rem 1rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4); /* Overlay for contrast */
+    z-index: 1;
+}
+
+.hero h1 {
+    font-size: 4rem;
+    margin-bottom: 1rem;
+    animation: fadeInUp 1.5s ease-in-out;
+    position: relative;
+    z-index: 2;
+}
+
+.hero p {
+    font-size: 1.6rem;
+    margin-bottom: 2rem;
+    animation: fadeInUp 2s ease-in-out;
+    position: relative;
+    z-index: 2;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Status Banner Styling */
+.status-banner {
+    background-color: #d4edda; /* Light green for success */
+    color: #155724; /* Dark green text */
+    padding: 1rem;
+    border: 1px solid #c3e6cb;
+    border-radius: 5px;
+    margin-top: 1rem;
+    text-align: center;
+    font-size: 1rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    display: none; /* Hidden by default */
+}
+
+.status-banner.error {
+    background-color: #f8d7da; /* Light red for errors */
+    color: #721c24; /* Dark red text */
+    border-color: #f5c6cb;
+}
+
+#statusMessage {
+    margin: 0;
+}
+
+.close-banner {
+    color: inherit;
     font-size: 1.2rem;
-    border-radius: 20px;
-    border: none;
+    margin-left: 10px;
     cursor: pointer;
-    transition: all 0.3s ease;
 }
 
-button:hover {
-    background: linear-gradient(145deg, rgba(211, 47, 47, 0.9), rgba(183, 28, 28, 0.9)); /* Increased opacity on hover */
-    transform: scale(1.05);
+.close-banner:hover {
+    color: #007BFF; /* Blue on hover */
 }
 
+.contact {
+    padding: 4rem 2rem;
+    background-color: #FFFFFF;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+    margin: 2rem 0;
+}
 
-/* Right Section: Images */
-.image-container {
-    flex: 1;
+.contact form {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    align-items: flex-end;
-    gap: 10%; /* Space between images */
-    height: 60%; /* Overall height for the right section */
+    gap: 1.5rem;
 }
 
-.image-container img {
-    width: 100%;
-    object-fit: contain; /* Ensures images maintain aspect ratio */
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.image-container img:nth-child(1) {
-    width: 80%;
-    height: 40%; /* First image with specific width and height */
-    margin-right: 0%; /* No space on the right */
-    margin-top: 5%; /* Adds a gap above the first image */
-    margin-bottom: 5%; /* Adds space below the first image */
-}
-
-.image-container img:nth-child(2) {
-    width: 75%;
-    height: 5%; /* Second image with specific width and height */
-    margin-bottom: 10%; /* Adds gap below the second image */
-	 margin-bottom: 2%; /* Adds space below the first image */
-}
-
-.image-container img:nth-child(3) {
-    width: 40%;
-    height: 22%; /* Third image with specific width and height */
-    margin-right: 20%; /* Adjust this value as needed to create space on the right */
-    margin-top: 5%; /* Adds a gap above the third image */
-}
-
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .container {
-                flex-direction: column;
-                align-items: center;
-            }
-
-            .form-container {
-                margin-right: 0;
-                margin-bottom: 10px;
-                width: 60%;
-            }
-
-            .image-container {
-                align-items: center;
-            }
-
-            .image-container img {
-                width: 50px;
-                height: 60%;
-            }
-        }
-		
-		/* Terms and Privacy Policy Links */
-.terms-links {
-    margin-top: 20px;
-    text-align: right;
+.contact label {
+    font-weight: bold;
+    color: #1E3A8A; /* Matching theme color */
     font-size: 1rem;
-    color: #fff;
 }
 
-.terms-links a {
-    color: #f44336; /* Link color */
-    text-decoration: none; /* Remove underline */
-    margin: 0 10px; /* Add spacing between the links */
+.contact input,
+.contact textarea,
+.contact button {
+    padding: 1rem;
+    border: 1px solid #E2E8F0;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
-.terms-links a:hover {
-    text-decoration: underline; /* Underline on hover */
+.contact input:focus,
+.contact textarea:focus {
+    border-color: #3B82F6;
+    box-shadow: 0 0 8px rgba(59, 130, 246, 0.5); /* Blue glow on focus */
 }
 
+.contact .submit-button {
+    background-color: #1E3A8A;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 1.2rem;
+    padding: 1rem;
+    border-radius: 30px; /* Rounded pill shape */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
 
-</style>
+.contact .submit-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Success Banner Styling */
+.success-banner {
+    background-color: #ECFDF5; /* Light green background */
+    color: #047857; /* Dark green text */
+    padding: 1.5rem;
+    border: 1px solid #A7F3D0;
+    border-radius: 8px;
+    margin-top: 1rem;
+    text-align: center;
+    font-size: 1rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    display: none; /* Hidden by default */
+    animation: slideIn 0.5s ease-in-out;
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateY(-20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+#closeBanner {
+    color: #047857;
+    font-size: 1.5rem;
+    margin-left: 10px;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+#closeBanner:hover {
+    color: #FFC107; /* Vibrant yellow for attention */
+}
+
+/* Circular Progress Indicator */
+#uploadProgress {
+    text-align: center;
+    margin: 2rem 0;
+}
+
+#uploadProgress svg {
+    transform: rotate(-90deg); /* Rotate the circle to start at the top */
+    width: 120px;
+    height: 120px;
+    margin: 0 auto;
+}
+
+#uploadProgress circle {
+    transition: stroke-dashoffset 0.3s ease-in-out;
+}
+
+#progressText {
+    font-size: 1.2rem;
+    color: #1E3A8A;
+    margin-top: 1rem;
+    font-weight: bold;
+}
+
+/* Visually Hidden Content for Screen Readers */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+}
+
+footer {
+    background: linear-gradient(135deg, #1E3A8A, #3B82F6); /* Matching gradient */
+    color: white;
+    text-align: center;
+    padding: 2rem;
+}
+
+/* Footer Styles */
+footer {
+    background: linear-gradient(135deg, #1E3A8A, #3B82F6); /* Gradient blue */
+    color: white;
+    padding: 3rem 2rem;
+    text-align: center;
+}
+
+.footer-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.footer-section {
+    flex: 1 1 200px; /* Responsive columns */
+    text-align: left;
+}
+
+.footer-section h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: #FFC107; /* Vibrant yellow for headings */
+}
+
+.footer-section p {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #E2E8F0; /* Light gray for paragraphs */
+}
+
+.footer-section ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-section ul li {
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+    color: #E2E8F0;
+}
+
+.footer-section ul li i {
+    margin-right: 0.5rem;
+    font-size: 1.2rem;
+    color: #FFC107; /* Vibrant yellow for icons */
+}
+
+.social-icons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+}
+
+.social-icons a {
+    color: white;
+    font-size: 1.5rem;
+    transition: transform 0.3s ease, color 0.3s ease;
+    text-decoration: none;
+}
+
+.social-icons a:hover {
+    transform: scale(1.2);
+    color: #FFC107; /* Vibrant yellow on hover */
+}
+
+.footer-bottom {
+    background: #1E3A8A; /* Darker blue for copyright section */
+    padding: 1rem;
+    text-align: center;
+}
+
+.footer-bottom p {
+    font-size: 0.9rem;
+    margin: 0;
+    color: #E2E8F0; /* Light gray for text */
+}
+}
