@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Saranga Thenuwara - IT Services & Support</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <!-- External CSS -->
+    <link rel="stylesheet" href="styles.css">
+    <!-- Favicon -->
+    <link rel="icon" href="logo.jpg" type="image/x-icon">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="logo">
+            <img src="logo.jpg" alt="Saranga Thenuwara IT Services Logo">
+            
+        </div>
+        <nav>
+            <ul class="nav-links">
+                <li><a href="#services">Services</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>Expert IT Services & Support for Your Business</h1>
+        <p>Transforming Technology Challenges into Seamless Solutions</p>
+        <a href="#contact" class="cta-button">Get in Touch</a>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="services">
+        <h2>Our Services</h2>
+        <div class="service-grid">
+            <div class="service-item">
+                <h3>System Administration</h3>
+                <p>Windows Server management, Active Directory, backup solutions, and more.</p>
+            </div>
+            <div class="service-item">
+                <h3>Networking</h3>
+                <p>Routing, switching, VPN setup, wireless solutions, and more.</p>
+            </div>
+            <div class="service-item">
+                <h3>Cloud Solutions</h3>
+                <p>Azure, AWS services, cloud migration, and management.</p>
+            </div>
+            <div class="service-item">
+                <h3>Cybersecurity</h3>
+                <p>Security policies, firewall management, penetration testing, and more.</p>
+            </div>
+            <div class="service-item">
+                <h3>SSL Support</h3>
+                <p>Secure your website and applications with SSL certificate installation and management.</p>
+            </div>
+            <div class="service-item">
+                <h3>Remote Support</h3>
+                <p>24/7 remote IT support for troubleshooting, maintenance, and system optimization.</p>
+            </div>
+            <div class="service-item">
+                <h3>O365 Support</h3>
+                <p>Comprehensive support for Microsoft 365, including email, Teams, and productivity tools.</p>
+            </div>
+            <div class="service-item">
+                <h3>SharePoint Support</h3>
+                <p>Custom SharePoint development, configuration, and ongoing support for collaboration.</p>
+            </div>
+            <div class="service-item">
+                <h3>PowerShell Automation</h3>
+                <p>Streamline tasks and automate workflows using PowerShell scripting for Windows environments.</p>
+            </div>
+            <div class="service-item">
+                <h3>Python Automation</h3>
+                <p>Develop custom scripts and automate processes using Python for cross-platform solutions.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Us -->
+    <section id="about" class="about">
+        <h2>About Us</h2>
+        <p>Saranga Thenuwara IT Services provides top-notch IT solutions with over 7 years of experience. Our mission is to deliver reliable and efficient IT services tailored to meet the unique needs of our clients.</p>
+    </section>
+
+    <!-- Contact Us -->
+    <section id="contact" class="contact">
+        <h2>Contact Us</h2>
+        <p>Email: info@sarangait.com</p>
+        <p>Phone: +94 77 123 4567</p>
+        <p>Location: Colombo, Sri Lanka</p>
+    </section>
+
+    <!-- Chatbot Widget -->
+    <div class="chatbot-widget" onclick="openChat()">💬 Chat with us</div>
+
+    <!-- Chat Window -->
+    <div id="chat-window" class="chat-window">
+        <div class="chat-header">
+            <h3>Live Chat</h3>
+            <button class="close-btn" onclick="closeChat()">×</button>
+        </div>
+        <div class="chat-body">
+            <p>Welcome! How can we assist you today?</p>
+        </div>
+        <div class="chat-footer">
+            <input type="text" id="user-name" placeholder="Your Name" />
+            <input type="email" id="user-email" placeholder="Your Email" />
+            <textarea id="user-message" placeholder="Your Message"></textarea>
+            <button onclick="sendMessage()">Send</button>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script>
+        // Open the chat window
+        function openChat() {
+            document.getElementById('chat-window').style.display = 'block';
+        }
+
+        // Close the chat window
+        function closeChat() {
+            document.getElementById('chat-window').style.display = 'none';
+        }
+
+        // Send message to the backend
+        async function sendMessage() {
+            const name = document.getElementById('user-name').value;
+            const email = document.getElementById('user-email').value;
+            const message = document.getElementById('user-message').value;
+
+            if (!name || !email || !message) {
+                alert('Please fill in all fields.');
+                return;
+            }
+
+            try {
+                const response = await fetch('/send-message', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ name, email, message }),
+                });
+
+                const result = await response.json();
+
+                if (result.success) {
+                    alert('Thank you! Your message has been sent.');
+                    closeChat();
+                } else {
+                    alert('Failed to send message. Please try again.');
+                }
+            } catch (error) {
+                console.error(error);
+                alert('An error occurred. Please try again later.');
+            }
+        }
+    </script>
+</body>
+</html>
