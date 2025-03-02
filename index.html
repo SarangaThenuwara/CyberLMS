@@ -112,6 +112,25 @@
     </div>
 
     <!-- JavaScript -->
+   <!-- Chatbot Widget -->
+    <div class="chatbot-widget" onclick="openChat()">💬 Chat with us</div>
+
+    <!-- Chat Window -->
+    <div id="chat-window" class="chat-window">
+        <div class="chat-header">
+            <h3>Live Chat</h3>
+            <button class="close-btn" onclick="closeChat()">×</button>
+        </div>
+        <div class="chat-body" id="chat-body">
+            <!-- Messages will be dynamically added here -->
+        </div>
+        <div class="chat-footer">
+            <input type="text" id="user-input" placeholder="Type your message..." onkeypress="handleKeyPress(event)" />
+            <button onclick="sendMessage()">Send</button>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
     <script>
         // Conversation state management
         const conversationState = {
@@ -202,16 +221,20 @@
 
                 case 'awaiting_name':
                     // Save the user's name
-                    conversationState.userData.name = input;
-                    addBotMessage(`Nice to meet you, ${input}! Could you please share your email address?`);
-                    conversationState.state = 'awaiting_email';
+                    if (input.trim()) {
+                        conversationState.userData.name = input;
+                        addBotMessage(`Nice to meet you, ${input}! Could you please share your email address?`);
+                        conversationState.state = 'awaiting_email';
+                    } else {
+                        addBotMessage("Your name is required. Please provide it.");
+                    }
                     break;
 
                 case 'awaiting_email':
                     // Validate and save the user's email
                     if (validateEmail(input)) {
                         conversationState.userData.email = input;
-                        addBotMessage("Thank you! Could you also provide your phone number (optional)?");
+                        addBotMessage("Thank you! Could you also provide your mobile number with the country code (e.g., +94)?");
                         conversationState.state = 'awaiting_phone';
                     } else {
                         addBotMessage("That doesn't look like a valid email. Please try again.");
@@ -219,23 +242,31 @@
                     break;
 
                 case 'awaiting_phone':
-                    // Save the user's phone number (if provided)
-                    conversationState.userData.phone = input || 'Not provided';
-                    addBotMessage("Got it! Finally, could you describe the issue or request you have?");
-                    conversationState.state = 'awaiting_issue';
+                    // Validate and save the user's phone number
+                    if (validatePhone(input)) {
+                        conversationState.userData.phone = input;
+                        addBotMessage("Got it! Finally, could you describe the issue or request you have?");
+                        conversationState.state = 'awaiting_issue';
+                    } else {
+                        addBotMessage("Please provide a valid mobile number with the country code (e.g., +94).");
+                    }
                     break;
 
                 case 'awaiting_issue':
                     // Save the user's issue/request
-                    conversationState.userData.issue = input;
-                    addBotMessage("Thank you for sharing your details. Let me forward this to our support team.");
+                    if (input.trim()) {
+                        conversationState.userData.issue = input;
+                        addBotMessage("Thank you for sharing your details. Let me forward this to our support team.");
 
-                    // Send the collected data to the backend
-                    sendUserDataToBackend(conversationState.userData);
+                        // Send the collected data to the backend
+                        sendUserDataToBackend(conversationState.userData);
 
-                    // Reset the conversation state
-                    conversationState.state = 'start';
-                    conversationState.userData = { name: '', email: '', phone: '', issue: '' };
+                        // Reset the conversation state
+                        conversationState.state = 'start';
+                        conversationState.userData = { name: '', email: '', phone: '', issue: '' };
+                    } else {
+                        addBotMessage("Your issue or request is required. Please describe it.");
+                    }
                     break;
 
                 default:
@@ -248,6 +279,12 @@
         function validateEmail(email) {
             const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
             return emailRegex.test(email);
+        }
+
+        // Validate phone number with country code (E.164 format)
+        function validatePhone(phone) {
+            const phoneRegex = /^\+[1-9]\d{1,14}$/; // E.164 format (e.g., +94771234567)
+            return phoneRegex.test(phone);
         }
 
         // Send user data to the backend
@@ -272,5 +309,6 @@
             }
         }
     </script>
+
 </body>
 </html>
